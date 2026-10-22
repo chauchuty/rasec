@@ -6,6 +6,8 @@ const path = require('path');
 
 const PORTA = 8091;
 const RAIZ = path.join(__dirname, 'frontend');
+const BACKEND_HOST = '127.0.0.1';
+const BACKEND_PORTA = Number(process.env.BACKEND_PORTA) || 3000;
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -19,6 +21,24 @@ const MIME = {
 
 http
   .createServer((req, res) => {
+    // Proxy de /api/* para o backend (equivale ao Rewrite do Render)
+    if (req.url.startsWith('/api/')) {
+      const alvo = http.request(
+        { host: BACKEND_HOST, port: BACKEND_PORTA, path: req.url, method: req.method,
+          headers: { ...req.headers, host: `${BACKEND_HOST}:${BACKEND_PORTA}` } },
+        (resBackend) => {
+          res.writeHead(resBackend.statusCode, resBackend.headers);
+          resBackend.pipe(res);
+        }
+      );
+      alvo.on('error', (erro) => {
+        res.writeHead(502, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ erro: 'Backend offline: ' + erro.code }));
+      });
+      req.pipe(alvo);
+      return;
+    }
+
     let caminho = decodeURIComponent(req.url.split('?')[0]);
     // Painel administrativo em /admin
     if (caminho === '/admin' || caminho.startsWith('/admin/')) {

@@ -3,8 +3,9 @@
 'use strict';
 
 /* ------------------------- Config ------------------------- */
-// Em dev o backend roda na porta 3000; em produção, mesmo origin.
-const API_BASE = location.port === '8091' ? 'http://127.0.0.1:3000' : './';
+// Caminho relativo funciona com Rewrite do Render e proxy do dev.
+// Opcional: definir window.RASEC_API_BASE antes deste script.
+const API_BASE = window.RASEC_API_BASE || './';
 
 const NOME_SABOR = { carne: 'Carne', frango: 'Frango', linguica: 'Linguiça' };
 const EMOJI_SABOR = { carne: '🥩', frango: '🍗', linguica: '🌭' };

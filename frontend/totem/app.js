@@ -68,12 +68,10 @@ function gravarDados(chave, valor) {
 }
 
 /* ------------------------- API (backend) ------------------------- */
-// Mesmo origin em produção; em dev o backend roda na porta 3000.
-const API_BASE = (() => {
-  const salva = lerDados('rasec:v1:apiBase', '');
-  if (salva) return salva;
-  return location.port === '8091' ? 'http://127.0.0.1:3000' : './';
-})();
+// Caminho relativo './api/...' funciona com o Rewrite do Render e com o
+// proxy do servidor.cjs em dev. Para domínio externo, defina antes na página:
+// <script>window.RASEC_API_BASE = 'https://minha-api.onrender.com'</script>
+const API_BASE = window.RASEC_API_BASE || './';
 
 async function chamarAPI(caminho, opcoes = {}) {
   const resposta = await fetch(API_BASE + caminho, {
