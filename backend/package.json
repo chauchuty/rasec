@@ -1,0 +1,17 @@
+{
+  "name": "rasec-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "API do totem RASEC Espetinhos — pedidos, Pix e administração (Postgres)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/server.js",
+    "check": "node --check src/server.js && node --check src/db.js && node --check src/pix.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "pg": "^8.13.0",
+    "qrcode": "^1.5.4"
+  }
+}

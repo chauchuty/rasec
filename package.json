@@ -1,0 +1,13 @@
+{
+  "name": "rasec-espetinhos",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Totem PWA + painel administrativo do RASEC Espetinhos",
+  "scripts": {
+    "start": "node servidor.cjs",
+    "start:backend": "cd backend && node --env-file-if-exists=.env src/server.js",
+    "start:backend:exemplo": "cd backend && node --env-file=.env.example src/server.js",
+    "test": "node --check frontend/totem/app.js && node --check frontend/totem/sw.js && node --check frontend/admin/admin.js && node --check backend/src/server.js && node --check backend/src/db.js && node --check backend/src/pix.js && node --check backend/src/rotas.js"
+  }
+}

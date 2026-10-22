@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0d0b09">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="RASEC">
+  <meta name="description" content="Totem de autoatendimento — RASEC Espetinhos. Peça seu espetinho de carne, frango ou linguiça!">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <title>RASEC Espetinhos — Totem</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topo">
+    <button id="btn-idioma" aria-label="Alternar idioma" hidden></button>
+    <div class="logo-box">
+      <h1 class="logo-titulo">RASEC</h1>
+      <p class="logo-sub">ESPETINHOS</p>
+    </div>
+    <span class="selo-cepk">C.E.P.K</span>
+  </header>
+
+  <main id="app">
+  </main>
+
+  <div id="tr-carrinho" class="tr-carrinho" aria-live="polite">
+    <div class="carrinho-info">
+      <span id="carrinho-qtd" class="badge">0</span>
+      <div class="carrinho-valores">
+        <span class="rotulo">Total</span>
+        <strong id="carrinho-total">R$ 0,00</strong>
+      </div>
+    </div>
+    <button id="btn-carrinho" class="btn btn-creme" disabled>NOVIDADE! Ver pedido 🍢</button>
+  </div>
+  <button id="btn-instalar" class="btn-instalar" hidden>📲 Instalar app</button>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

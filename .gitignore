@@ -1,0 +1,11 @@
+# Dependências
+node_modules/
+
+# Segredos — NUNCA versionar
+backend/.env
+.env
+
+# Sistema / editor
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0d0b09">
+  <meta name="robots" content="noindex">
+  <title>RASEC — Painel Administrativo</title>
+  <link rel="icon" type="image/png" href="../totem/icons/icon-192.png">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <header class="topo-adm">
+    <div class="logo-mini">RASEC <span>PAINEL</span></div>
+    <div class="topo-info">
+      <span id="conexao" class="conexao">Conectando…</span>
+      <button id="btn-sair" class="btn btn-escuro-mini" hidden>Sair</button>
+    </div>
+  </header>
+
+  <main id="app">
+    <!-- Login -->
+    <section id="tela-login" class="tela-login">
+      <form id="form-login" class="caixa-login">
+        <h1>Painel da Cozinha</h1>
+        <p class="dica">Acesso exclusivo dos funcionários.</p>
+        <label for="campo-senha">Senha</label>
+        <input id="campo-senha" type="password" inputmode="numeric" autocomplete="current-password"
+          placeholder="••••••••" required>
+        <button class="btn btn-vermelho" type="submit">Entrar →</button>
+        <p id="erro-login" class="erro" hidden>Senha incorreta.</p>
+      </form>
+    </section>
+
+    <!-- Painel -->
+    <section id="tela-painel" hidden>
+      <nav class="abas">
+        <button class="aba ativa" data-aba="pedidos" id="aba-pedidos">Pedidos <span id="badge-pendentes" class="badge-mini"></span></button>
+        <button class="aba" data-aba="relatorios" id="aba-relatorios">Relatórios</button>
+      </nav>
+
+      <!-- Aba Pedidos -->
+      <div id="painel-pedidos">
+        <div class="filtros">
+          <button class="filtro ativa" data-status="">Todos</button>
+          <button class="filtro" data-status="Pendente">Pendentes</button>
+          <button class="filtro" data-status="Em preparo">Em preparo</button>
+          <button class="filtro" data-status="Pronto">Prontos</button>
+          <button class="filtro" data-status="Entregue">Entregues</button>
+        </div>
+        <p class="atualizacao">Atualiza automaticamente a cada 15 s.</p>
+        <div id="lista-pedidos" class="lista-pedidos"></div>
+      </div>
+
+      <!-- Aba Relatórios -->
+      <div id="painel-relatorios" hidden>
+        <div class="filtros-periodo">
+          <label>De <input type="date" id="rel-de"></label>
+          <label>Até <input type="date" id="rel-ate"></label>
+          <button class="btn btn-vermelho" id="btn-gerar-relatorio" type="button">Gerar</button>
+        </div>
+        <div id="relatorio-conteudo"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="admin.js"></script>
+</body>
+</html>
